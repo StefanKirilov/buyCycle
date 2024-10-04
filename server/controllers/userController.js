@@ -28,5 +28,30 @@ router.get('/logout',async (req, res) => {
     res.json({ok: true});
 });
 
+router.get('/profile', async (req, res, next) => {
+    const user = JSON.parse(req.cookies["auth"]);
+    const userId = user?._id;
+
+    const result = await userService.getProfile(userId)
+    .then(user => { res.status(200).json(user) })
+    .catch(next); 
+
+    // console.log(result);
+
+    return result;
+});
+
+router.put('/profile', async (req, res, next) => {
+    const user = JSON.parse(req.cookies["auth"]);
+    const userId = user?._id;
+    const { email, username } = req.body;
+
+    const token = await userService.updateProfile(userId, email, username);
+
+    // res.cookie('auth', token, { httpOnly: true })
+
+    res.json(token);
+});
+
 
 module.exports = router;

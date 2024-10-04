@@ -37,15 +37,15 @@ exports.login = async (userData) => {
     return token;
 };
 
-exports.order = async (data, userId) => {
-    const user = await User.findById(userId);
+// exports.order = async (data, userId) => {
+//     const user = await User.findById(userId);
 
-    user.myOrder.push(data);
+//     user.myOrder.push(data);
 
-    await user.save();
+//     await user.save();
 
-    return user;
-};
+//     return user;
+// };
 
 exports.getProfile = (id) => {
     const user = User.findById(id, { password: 0, __v: 0 }) //finding by Id and returning without password and __v
