@@ -1,0 +1,96 @@
+const router = require('express').Router();
+const cycleServices = require('../services/cycleServices');
+
+router.get('/',async (req, res) => {
+    const cycles = await cycleServices.getAll();
+    res.json(cycles);
+});
+
+router.post('/',async (req, res) => {
+    const cycleData = req.body;
+    // const user = req.cookies["auth"]?._id;
+    const cycles = await cycleServices.create({...cycleData, owner: req.cookies.auth._id});
+
+    res.json(cycles);
+});
+
+router.get('/:cycleId',async (req, res) => {
+    const cycleId = req.params.cycleId;
+    const cycle = await cycleServices.getOne(cycleId);
+
+    res.json(cycle);
+});
+
+router.put('/:cycleId',async (req, res) => {
+    const cycleId = req.params.cycleId;
+    const cycleData = req.body;
+    const cycle = await cycleServices.update(cycleId, cycleData);
+
+    res.json(cycle);
+});
+
+router.delete('/:cycleId',async (req, res) => {
+    const cycleId = req.params.cycleId;
+    await cycleServices.delete(cycleId);
+
+    res.status(204).json({ok: true});
+});
+
+router.get('/:cycleId/like', async (req, res) => {
+    const user = JSON.parse(req.cookies["auth"]);
+
+    const cycleId = req.params.cycleId;
+    const userId = user?._id;
+
+
+    try {
+        await cycleServices.like(cycleId, userId);
+        res.status(204).json({ok: true});
+    } catch (error) {
+        console.log(error.message);
+    }
+});
+
+router.get('/:cycleId/unlike', async (req, res) => {
+    const user = JSON.parse(req.cookies["auth"]);
+
+    const cycleId = req.params.cycleId;
+    const userId = user?._id;
+
+    try {
+        await cycleServices.unlike(cycleId, userId);
+        res.status(204).json({ok: true});
+    } catch (error) {
+        console.log(error.message);
+    }
+});
+
+router.post('/:cycleId/comments', async (req, res) => {
+    const cycleId = req.params.cycleId;
+    const { comment, username } = req.body;
+    const user = req.cookies["auth"]?._id;
+    const date = new Date().toISOString();
+
+    try {
+        await cycleServices.addComment(cycleId, { user , comment, username, date});
+        res.status(204).json({ok: true});
+    } catch (error) {
+        console.log(error.message);
+    }
+});
+
+router.post('/:cycleId/deleteComment', async (req, res) => {
+
+    const cycleId = req.params.cycleId;
+    const { elementId } = req.body;
+    try {
+        await cycleServices.deleteComment(cycleId, elementId);
+        res.status(204).json({ok: true});
+    } catch (error) {
+        console.log(error.message);
+    }
+});
+
+
+
+module.exports = router;
