@@ -8,7 +8,7 @@
 
 .newcontainer{
     min-height: 100%;
-    padding: 20px;
+    padding: 20px 16%;
     animation: fadeInAnimation ease 1s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
@@ -69,13 +69,17 @@
     margin-top: 16px;
 }
 
+.container .upload {
+   display: none;
+}
+
 .container .btnImage {
     position: relative;
     display: block;
     background-color: #fffbef;
     color: rgb(22, 22, 22);
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
     border-radius: 2px;
     border: solid 1px transparent;
     width: 200px;
@@ -83,6 +87,8 @@
     padding: 5px;
     margin-top: 16px;
     cursor: pointer;
+    text-align: center;
+    align-content: center;
 }
 
 .container .btnImage::after {

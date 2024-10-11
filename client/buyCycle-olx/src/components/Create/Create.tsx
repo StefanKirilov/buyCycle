@@ -1,4 +1,4 @@
-import { useState, MouseEvent } from 'react';
+import { useState, MouseEvent, useEffect } from 'react';
 import styles from './create.module.css';
 import * as apiService from '../../services/apiService';
 
@@ -6,25 +6,24 @@ import { Link } from 'react-router-dom';
 
 export default function Create() {
 
-    const [file, setFile] = useState<File>();
-    const handleUpload = (e: MouseEvent): void => {
-        e.preventDefault();
-        console.log(file);
-        // const formdata = new FormData();
-        // formdata.append("file", file!);
-        // console.log(formdata);
+    const [file, setFile] = useState<File | null>(null);
 
-        const fileObject = {
-            'name'    : file?.name,
-            'lastModified': file?.lastModified,
-            'size'       : file?.size,
-            'type'       : file?.type,
-            'path'       : file?.webkitRelativePath,
-        } 
+    useEffect(()=>{
+        if(file){
+            handleUpload()
+        }
+    },[file])
+
+    const handleUpload = (): void => {
         
-        apiService.uploadFile(fileObject)
-        .then(() => console.log('ready'))
-        .catch();
+        console.log(file);
+
+        const formData: any = new FormData();
+        formData.append("file", file);
+
+        apiService.uploadFile(formData)
+            .then(() => console.log('ready'))
+            .catch();
     }
 
     return (
@@ -34,6 +33,18 @@ export default function Create() {
                     <h1>Добави обява</h1>
                 </div>
                 <form className={styles.form}>
+                    {/* dsfsfds */}
+                    <section className={styles.newpage} >
+                        <div className={styles.container}>
+                            <h1>Снимки</h1>
+                            <label>Първата снимка ще бъде основната в обявата ти.</label>
+                            <div className="uploadWrapper">
+                                <label htmlFor='file' className={styles.btnImage}>Добави снимка</label>
+                                <input className={styles.upload} type="file" id='file' onChange={(e) => setFile(e.target.files![0])} />
+                            </div>
+                        </div >
+                    </section >
+                    {/* dsfsd */}
                     <section className={styles.newpage} >
                         <div className={styles.container}>
                             <h1>Какво колело предлагаш?</h1>
@@ -49,14 +60,14 @@ export default function Create() {
                             <input type="text" id="price" name="price" placeholder='Цена...(в лева)' />
                         </div >
                     </section >
-                    <section className={styles.newpage} >
+                    {/* <section className={styles.newpage} >
                         <div className={styles.container}>
                         <h1>Снимки</h1>
                             <label>Първата снимка ще бъде основната в обявата ти.</label>
                             <input type="file" onChange={e => setFile(e.target.files![0])}/>
                             <button onClick={handleUpload} className={styles.btnImage}>Добави снимка</button>
                         </div >
-                    </section >
+                    </section > */}
                     <section className={styles.newpage} >
                         <div className={styles.container}>
                             <label>Описание*</label>
