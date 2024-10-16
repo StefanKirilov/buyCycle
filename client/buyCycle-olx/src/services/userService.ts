@@ -66,6 +66,35 @@ export const logout = async () => {
     }
 }
 
+export const deleteFile = async (fileName: any) => { 
+    try {
+    const response = await fetch(`${baseUrl}/users/${fileName}`,
+        {
+            method: "DELETE",
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }
+    );
+    
+        if (response.status === 204) {
+            return {};
+        };
+
+        const result = await response.json();
+    
+        if (!response.ok) {
+            throw result;
+        }
+        
+        return result;
+        // return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export const getProfile = async () => {
     try {
         const response = await fetch(

@@ -15,9 +15,19 @@ export const uploadFile = async (data: any) => {
                 body: data
             }
         );
-        console.log(response);
+
+        if (response.status === 204) {
+            return {};
+        };
+
+        const result = await response.json();
+    
+        if (!response.ok) {
+            throw result;
+        }
         
-        return response;
+        return result;
+        // return response;
     } catch (error) {
         console.log(error);
     }
