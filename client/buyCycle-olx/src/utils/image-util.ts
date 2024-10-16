@@ -1,5 +1,7 @@
-function getImageURL(name: string) {
-    return new URL(`../../../../server/Images/${name}`, import.meta.url).href
+const baseUrl = 'http://localhost:5000';
+
+function getImageURL(name: string): any { 
+    return new URL(`${baseUrl}/Images/${name}`, import.meta.url).href
 }
 
 export {getImageURL};
