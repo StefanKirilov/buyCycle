@@ -205,6 +205,11 @@
     border: solid 3px rgb(0, 47, 52);
 }
 
+.container .errorMsg{
+    color: rgb(201, 8, 8);
+    margin-bottom: 10px;
+}
+
 @keyframes fadeInAnimation {
     0% {
         opacity: 0;
