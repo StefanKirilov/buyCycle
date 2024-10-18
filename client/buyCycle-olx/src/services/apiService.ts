@@ -34,16 +34,69 @@ export const uploadFile = async (data: any) => {
 }
 
 
-  export const createBike = async (data: any) => {
+  export const createBike = async (form: any, images: any, email: any) => {
     try {
-        const response = await fetch(`${baseUrl}/users/order`,
+        const response = await fetch(`${baseUrl}/cycles`,
             {
                 method: "POST",
                 credentials: "include",
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify({form, images, email})
+            }
+        );
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const getAllCycles = async () => {
+    try {
+        const response = await fetch(`${baseUrl}/cycles`);
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+
+};
+
+export const getOneCycle = async (id: any) => {
+    try {
+        const response = await fetch(`${baseUrl}/cycles/${id}`);
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const like = async (id: any) => {
+    try {
+        const response = await fetch(`${baseUrl}/cycles/${id}/like`,
+            {
+                credentials: "include",
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
+export const unlike = async (id: any) => {
+    try {
+        const response = await fetch(`${baseUrl}/cycles/${id}/unlike`,
+            {
+                credentials: "include",
+                headers: {
+                    'Content-Type': 'application/json',
+                }
             }
         );
         return response;
