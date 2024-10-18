@@ -8,6 +8,7 @@ import camera from '../../assets/camera.svg';
 import bin from '../../assets/bin.svg';
 
 import { getImageURL } from '../../utils/image-util';
+import { log } from 'console';
 
 type formInitialState = {
     name: string,
@@ -17,7 +18,7 @@ type formInitialState = {
     place: string,
     phone: string,
     type: string,
-    image: string[],
+    image: string[] | undefined,
     email: string,
     date: string,
     reviews: string[],
@@ -31,6 +32,13 @@ type commentList = {
     username: string,
     comment: string,
     date: string,
+}
+
+type userDetail = {
+    email: string,
+    image: string[],
+    username: string,
+    id: string,
 }
 
 type Errors = Partial<Record<keyof any, string>>
@@ -52,23 +60,36 @@ const formInitialState: formInitialState = {
     commentList: [],
 };
 
+const userDetail: userDetail = {
+    email: '',
+    image: [],
+    username: '',
+    id: '',
+}
+
 export default function Create() {
 
     const [file, setFile] = useState<File | null>(null);
     const [images, setImage] = useState<string[] | undefined>([]);
-
-    const [finalImage, setFinalImage] = useState<string[] | undefined>([]);
-
+    const [userDetailsState, setUserDetailsState] = useState(userDetail);
     const [formState, setFormState] = useState(formInitialState);
+
     const [errors, setErrors] = useState<Errors>({});
+
     const [refresh, setRefresh] = useState<boolean>(false);
 
     const navigate = useNavigate();
 
     useEffect(() => {
         userService.getProfile()
-        .then((data) => setImage(data.image))
-        .catch()
+            .then((data) => setUserDetailsState(data))
+            .catch()
+    }, [refresh])
+
+    useEffect(() => {
+        userService.getProfile()
+            .then((data) => setImage(data.image))
+            .catch()
     }, [refresh])
 
     useEffect(() => {
@@ -76,11 +97,6 @@ export default function Create() {
             handleUpload()
         }
     }, [file])
-
-    // 
-
-    // console.log(images);
-    // 
 
     const handleUpload = (): void => {
         const formData: any = new FormData();
@@ -96,8 +112,8 @@ export default function Create() {
 
     const deleteUploadImage = (name: any): void => {
         userService.deleteFile(name)
-            .then((data) =>  setRefresh(!refresh))
-            .catch();    
+            .then((data) => setRefresh(!refresh))
+            .catch();
     }
 
     // 
@@ -111,62 +127,79 @@ export default function Create() {
 
     const submitHandler = async (e: any) => {
         e.preventDefault();
+
         console.log(formState);
 
-    //    await userService.getProfile()
-    //     .then((data) => setFinalImage(data.image))
-    //     .catch()
-
-    //     console.log(finalImage);
-        
-
-        // await apiService.createBike(formState);
-        // setFormState(formInitialState);
-        // navigate("/");
+        await apiService.createBike(formState, images, userDetailsState.email);
+        setFormState(formInitialState);
+        setImage([]);
+        navigate("/");
     }
 
-    // const validator = () => {
-    //     if (!formState.password) {
-    //         setErrors(state => ({
-    //             ...state,
-    //             password: 'Password must be required!'
-    //         }))
-    //     }
-    //     if (formState.password) {
-    //         if (formState.password.length < 4 || formState.password.length > 8) {
-    //             setErrors(state => ({
-    //                 ...state,
-    //                 password: 'Password must be between 4 and 8 characters!'
-    //             }))
-    //         }
-    //         else {
-    //             setErrors(state => ({
-    //                 ...state,
-    //                 password: ''
-    //             }))
-    //         }
-    //     }
-    //     if (!formState.email) {
-    //         setErrors(state => ({
-    //             ...state,
-    //             email: 'Email must be required!'
-    //         }))
-    //     }
-    //     if (formState.email) {
-    //         if (!regEx.test(formState.email)) {
-    //             setErrors(state => ({
-    //                 ...state,
-    //                 email: 'Email is not valid!'
-    //             }))
-    //         }
-    //         else {
-    //             setErrors(state => ({
-    //                 ...state,
-    //                 email: ''
-    //             }))
-    //         }
-    //     }
-    // }
+    const validator = () => {
+        if (!formState.name) {
+            setErrors(state => ({
+                ...state,
+                name: 'Name must be required!'
+            }))
+        }
+        if (formState.name) {
+            if (formState.name.length < 3) {
+                setErrors(state => ({
+                    ...state,
+                    name: 'Name must be at least 3 letters!'
+                }))
+            }
+            else {
+                setErrors(state => ({
+                    ...state,
+                    name: ''
+                }))
+            }
+        }
+        if (!formState.description) {
+            setErrors(state => ({
+                ...state,
+                description: 'Description must be required!'
+            }))
+        }
+        if (!formState.price) {
+            setErrors(state => ({
+                ...state,
+                price: 'Price must be required!'
+            }))
+        }
+        if (!formState.condition) {
+            setErrors(state => ({
+                ...state,
+                condition: 'Condition must be required!'
+            }))
+        }
+        if (!formState.place) {
+            setErrors(state => ({
+                ...state,
+                place: 'Place must be required!'
+            }))
+        }
+        if (!formState.phone) {
+            setErrors(state => ({
+                ...state,
+                phone: 'Phone must be required!'
+            }))
+        }
+        if (!formState.type) {
+            setErrors(state => ({
+                ...state,
+                type: 'Type must be required!'
+            }))
+        }
+        if (!formState.image) {
+            setErrors(state => ({
+                ...state,
+                image: 'Image must be required!'
+            }))
+        }
+    }
 
     return (
         <>
@@ -179,15 +212,28 @@ export default function Create() {
                         <div className={styles.container}>
                             <h1>Какво колело предлагаш?</h1>
                             <label>Заглавие*</label>
-                            <input type="text" id="name" name="name" placeholder='Пример: DRAG' onChange={userChangeHandler} />
+                            <input type="text" id="name" name="name" placeholder='Пример: DRAG' onKeyUp={validator} onChange={userChangeHandler} />
+
+                            {errors.name && (
+                                <p className={styles.errorMsg}>{errors.name}</p>
+                            )}
+
                         </div >
                         <div className={styles.container}>
                             <label>Категория*</label>
-                            <input type="text" id="location" name="type" placeholder='Пример: Планински бегач' onChange={userChangeHandler} />
+                            <input type="text" id="location" name="type" placeholder='Пример: Планински бегач' onKeyUp={validator} onChange={userChangeHandler} />
+
+                            {errors.type && (
+                                <p className={styles.errorMsg}>{errors.type}</p>
+                            )}
+
                         </div >
                         <div className={styles.container}>
                             <label >Цена*</label>
-                            <input type="text" id="price" name="price" placeholder='Цена...(в лева)' onChange={userChangeHandler} />
+                            <input type="text" id="price" name="price" placeholder='Цена...(в лева)' onKeyUp={validator} onChange={userChangeHandler} />
+                            {errors.price && (
+                                <p className={styles.errorMsg}>{errors.price}</p>
+                            )}
                         </div >
                     </section >
                     <section className={styles.newpage} >
@@ -205,7 +251,7 @@ export default function Create() {
                                     <div key={name} className={styles.imgArea}>
                                         <div className={styles.innerImageContrainer}>
                                             <div className={styles.bin}>
-                                            <img onClick={() => deleteUploadImage(name)} src={bin} alt="bin" />
+                                                <img onClick={() => deleteUploadImage(name)} src={bin} alt="bin" />
                                             </div>
                                         </div>
                                         <img src={getImageURL(name)} alt="image" />
@@ -225,22 +271,32 @@ export default function Create() {
                     <section className={styles.newpage} >
                         <div className={styles.container}>
                             <label>Описание*</label>
-                            <textarea id="name" name="description" placeholder='Напиши това, което ти се иска да прочетеш, ако ти гледаше обявата' onChange={userChangeHandler} />
+                            <textarea id="name" name="description" placeholder='Напиши това, което ти се иска да прочетеш, ако ти гледаше обявата' onKeyUp={validator} onChange={userChangeHandler} />
+                            {errors.description && (
+                                <p className={styles.errorMsg}>{errors.description}</p>
+                            )}
                         </div >
                     </section >
                     <section className={styles.newpage} >
                         <div className={styles.container}>
                             <label>Състояние*</label>
-                            <select name="condition" onChange={userChangeHandler}>
+                            <select name="condition" onKeyUp={validator} onChange={userChangeHandler}>
+                                <option value="defaut"></option>
                                 <option value="used">Използвано</option>
                                 <option value="new">Ново</option>
                             </select>
+                            {errors.condition && (
+                                <p className={styles.errorMsg}>{errors.condition}</p>
+                            )}
                         </div >
                     </section >
                     <section className={styles.newpage} >
                         <div className={styles.container}>
                             <label>Локация*</label>
-                            <input type="text" id="name" name="place" placeholder='Населено място' onChange={userChangeHandler} />
+                            <input type="text" id="name" name="place" placeholder='Населено място' onKeyUp={validator} onChange={userChangeHandler} />
+                            {errors.place && (
+                                <p className={styles.errorMsg}>{errors.place}</p>
+                            )}
                         </div >
                     </section >
                     <section className={styles.newpage} >
@@ -251,11 +307,14 @@ export default function Create() {
                         </div >
                         <div className={styles.container}>
                             <label>Имейл адрес</label>
-                            <input type="text" id="location" name="email" onChange={userChangeHandler} />
+                            <input type="text" id="location" name="email" value={userDetailsState.email} readOnly={true} />
                         </div >
                         <div className={styles.container}>
                             <label >Телефонен номер*</label>
-                            <input type="text" id="price" name="phone" onChange={userChangeHandler} />
+                            <input type="text" id="price" name="phone" onKeyUp={validator} onChange={userChangeHandler} />
+                            {errors.phone && (
+                                <p className={styles.errorMsg}>{errors.phone}</p>
+                            )}
                         </div >
                     </section >
                     <button className={styles.submit}>Добави обява</button>
