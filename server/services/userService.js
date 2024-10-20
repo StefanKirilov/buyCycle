@@ -47,6 +47,22 @@ exports.login = async (userData) => {
 //     return user;
 // };
 
+exports.uploadImage = async (data, userId) => {
+    const user = await User.findById(userId);
+    user.image.push(data);
+    await user.save();
+    return user;
+};
+
+exports.deleteImage = async (data, userId) => {
+    const user = await User.findById(userId);
+    
+    user.image.pull(data);
+    await user.save();
+    return user;
+};
+// 
+
 exports.getProfile = (id) => {
     const user = User.findById(id, { password: 0, __v: 0 }) //finding by Id and returning without password and __v
     return user;
