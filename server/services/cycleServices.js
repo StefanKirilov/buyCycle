@@ -3,7 +3,15 @@ const User = require('../models/User');
 
 exports.getAll = () => Cycle.find();
 
-exports.create = (data) => Cycle.create(data);
+// exports.create = (data) => Cycle.create(data);
+
+exports.create = async (data) => {
+    Cycle.create(data)
+    const user = await User.findById(data.owner);
+    user.image = [];
+    await user.save();
+    return user;
+};
 
 exports.getOne = (cycleId) => Cycle.findById(cycleId);
 
