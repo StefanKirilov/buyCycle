@@ -1,6 +1,10 @@
 const router = require('express').Router();
 const userService = require('../services/userService');
 
+const path = require('path');
+const fs = require('fs');
+// const { deleteFile } = require('../index');
+
 router.post('/register',async (req, res) => {
     const userData = req.body;
     try {
@@ -28,6 +32,30 @@ router.get('/logout',async (req, res) => {
     res.json({ok: true});
 });
 
+router.delete('/:fileName',async (req, res) => { 
+    const user = JSON.parse(req.cookies["auth"]);
+    const userId = user?._id;
+
+    const image = req.params.fileName;
+
+    const filePath = path.join(`${process.cwd()}`, 'Images', image);
+
+    // console.log(filePath);
+
+    fs.unlink(filePath, (err) => {
+        if (err) {
+            console.error("Error while deleting file:", err);
+        } else {
+            console.log(`File ${image} deleted successfully`);
+        }
+    });
+    
+    
+    await userService.deleteImage(image, userId);
+
+    res.status(204).json({ok: true});
+});
+
 router.get('/profile', async (req, res, next) => {
     const user = JSON.parse(req.cookies["auth"]);
     const userId = user?._id;
@@ -44,9 +72,9 @@ router.get('/profile', async (req, res, next) => {
 router.put('/profile', async (req, res, next) => {
     const user = JSON.parse(req.cookies["auth"]);
     const userId = user?._id;
-    const { email, username } = req.body;
+    const { email, username, image } = req.body;
 
-    const token = await userService.updateProfile(userId, email, username);
+    const token = await userService.updateProfile(userId, email, username, image);
 
     // res.cookie('auth', token, { httpOnly: true })
 
