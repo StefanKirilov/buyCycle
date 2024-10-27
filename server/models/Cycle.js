@@ -14,9 +14,35 @@ const cycleSchema = new mongoose.Schema({
         type: Number,
         required: [true, 'Price is required'],
     },
-    image: {
+    condition: {
+        type: String,
+        required: [true, 'Цondition place number is required'],
+    },
+    place: {
+        type: String,
+        required: [true, 'Populated place number is required'],
+    },
+    phone: {
+        type: Number,
+        required: [true, 'Phone number is required'],
+    },
+    type: {
+        type: String,
+        required: [true, 'Type is required'],
+    },
+    image: [
+        {
         type: String,
         required: [true, 'Image is required'],
+    }],
+    email: {
+        type: String,
+    },
+    date: {
+        type: String,
+    },
+    reviews: {
+        type: Number,
     },
     likes: [{
         type: mongoose.Types.ObjectId,
