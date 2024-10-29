@@ -1,94 +1,201 @@
-import styles from './detail.module.css';
+import styles from "./detail.module.css";
+import heart from "../../assets/red_heart.svg";
+import fillHeart from "../../assets/red_fill_heart.svg";
 
-import { useContext, useEffect, useState } from 'react';
-
-import * as apiService from '../../services/apiService';
-import { Link, useParams } from 'react-router-dom';
-import AuthContext from '../../contexts/authContext';
-
-import { getImageURL } from '../../utils/image-util';
-
+import { useContext, useEffect, useState } from "react";
+import * as apiService from "../../services/apiService";
+import { useParams } from "react-router-dom";
+import AuthContext from "../../contexts/authContext";
+import { getImageURL } from "../../utils/image-util";
+import moment from "moment";
 
 type Cycle = {
-    name: string,
-    description: string,
-    price: string,
-    condition: string,
-    place: string,
-    phone: string,
-    type: string,
-    image: string[],
-    email: string,
-    date: string,
-    reviews: string[],
-    likes: string[],
-    owner: string,
-    commentList: string[],
-    _id: string,
+  name: string;
+  description: string;
+  price: string;
+  condition: string;
+  place: string;
+  phone: string;
+  type: string;
+  image: string[];
+  email: string;
+  date: string;
+  reviews: string[];
+  likes: string[];
+  owner: string;
+  commentList: string[];
+  _id: string;
 };
 
 export default function Cycle() {
-    const [cycle, setCycle] = useState<Cycle>();
-    const [isLike, setLike] = useState(false);
+  const [cycle, setCycle] = useState<Cycle>();
+  const [isLike, setLike] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isFullscreen, setFullscreen] = useState(false);
 
-    // const { userId, isAuthenticated }: any = useContext(AuthContext);
-    const { id } = useParams();
+  const { userId, isAuthenticated }: any = useContext(AuthContext);
+  const { id } = useParams();
 
+  useEffect(() => {
+    apiService
+      .getOneCycle(id)
+      .then((data) => setCycle(data))
+      .catch((error) => console.log(error));
+  }, [isLike]);
 
-    useEffect(() => {
-        apiService.getOneCycle(id)
-            .then(data => setCycle(data))
-            .catch(error => console.log(error));
-    }, []);
+  const goToNextSlide = () => {
+    if (!cycle) return;
+    setCurrentIndex((currentIndex + 1) % cycle.image.length);
+  };
 
-    // useEffect(() => {
-    //     apiService.getOneSushi(id)
-    //         .then(data => setLike(data?.likes?.some(uid => uid === userId)))
-    //         .catch(error => console.log(error));
-    // }, [isLike]);
-
-    // const like = () => {
-    //     apiService.likeSushi(id)
-    //         .then()
-    //         .catch(error => console.log(error));
-
-    //         setLike(oldState => !oldState)
-    // }
-
-    // const unlike = () => {
-    //     apiService.unlikeSushi(id)
-    //         .then()
-    //         .catch(error => console.log(error));
-
-    //         setLike(oldState => !oldState)
-    // }
-
-
-    return (
-        <div className={styles.top}>
-            <div className={styles['container-first']}>
-                <div className={styles['container-img']}>
-                    <img className={styles.image} src={getImageURL(cycle?.image[0]!)} />
-                </div>
-                <div className={styles['container-items']}>
-                    <p className={styles.price}>{cycle?.price} лв.</p>
-                    <p className={styles.weight}>/ {cycle?.condition} гр.</p>
-                    <p className={styles.count}>/ {cycle?.place} бр.</p>
-                    <h1 className={styles.name}> {cycle?.name} </h1>
-                    <div className={styles.btn}>
-                        <div className={styles.like}>
-                            {/* {isAuthenticated && (
-                                isLike
-                                    ? <button onClick={() => unlike(sushi._id)} className={styles.full}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#ceab4a" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z" /></svg></button>
-                                    : <button onClick={() => like(sushi._id)} className={styles.empty}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#ceab4a" d="M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8v-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5v3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20c0 0-.1-.1-.1-.1c0 0 0 0 0 0c-23.1-25.9-58-37.7-92-31.2C81.6 101.5 48 142.1 48 189.5v3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268c20.9-19.4 32.8-46.7 32.8-75.2v-3.3c0-47.3-33.6-88-80.1-96.9c-34-6.5-69 5.4-92 31.2c0 0 0 0-.1 .1s0 0-.1 .1l-17.8 20c-.3 .4-.7 .7-1 1.1c-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z" /></svg></button>
-                            )
-                            } */}
-                        </div>
-
-                    </div>
-                    <p className={styles.description}>{cycle?.description}</p>
-                </div>
-            </div>
-        </div >
+  const goToPrevSlide = () => {
+    if (!cycle) return;
+    setCurrentIndex(
+      (currentIndex - 1 + cycle.image.length) % cycle.image.length
     );
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+  };
+
+  const like = (id: any) => {
+    apiService
+      .like(id)
+      .then(() => setLike(!isLike))
+      .catch();
+  };
+
+  const unlike = (id: any) => {
+    apiService
+      .unlike(id)
+      .then(() => setLike(!isLike))
+      .catch();
+  };
+
+  const toggleFullscreen = () => {
+    const carouselElement = document.querySelector(`.${styles.carousel}`);
+    if (!carouselElement) return;
+
+    if (!document.fullscreenElement) {
+      carouselElement.requestFullscreen();
+      setFullscreen(true);
+    } else if (document.fullscreenElement) {
+      document.exitFullscreen();
+      setFullscreen(false);
+    }
+  };
+
+  return (
+    <div className={styles.topWrapper}>
+      <div className={styles.top}>
+        <div className={styles.carousel}>
+          <div className={styles["carousel-inner"]}>
+            <img
+              src={getImageURL(cycle?.image[currentIndex]!)}
+              alt={`Slide ${currentIndex}`}
+              className={styles["carousel-image"]}
+            />
+          </div>
+
+          <button
+            className={`${styles["carousel-nav"]} ${
+              styles["carousel-nav-left"]
+            } ${currentIndex == 0 ? styles.disable : ""}`}
+            onClick={goToPrevSlide}
+            disabled={currentIndex == 0}
+          >
+            &#10094;
+          </button>
+          <button
+            className={`${styles["carousel-nav"]} ${
+              styles["carousel-nav-right"]
+            } ${currentIndex + 1 == cycle?.image.length ? styles.disable : ""}`}
+            onClick={goToNextSlide}
+            disabled={currentIndex + 1 == cycle?.image.length}
+          >
+            &#10095;
+          </button>
+
+          <div className={styles["carousel-dots"]}>
+            {cycle?.image.map((_, index) => (
+              <span
+                key={index}
+                className={`${styles.dot} ${
+                  index === currentIndex ? styles.active : ""
+                }`}
+                onClick={() => goToSlide(index)}
+              ></span>
+            ))}
+          </div>
+
+          <button
+            className={styles["carousel-fullscreen"]}
+            onClick={toggleFullscreen}
+          >
+            {isFullscreen ? "⛶" : "⛶"}
+          </button>
+        </div>
+        <div className={styles["under-carousel-container"]}>
+          <div className={styles.other}>
+            <div className={styles.type}>
+              <p>Type:</p>
+              <p>{cycle?.type}</p>
+            </div>
+            <div className={styles.condition}>
+              <p>Condition:</p>
+              <p>{cycle?.condition}</p>
+            </div>
+          </div>
+          <h2>Описание</h2>
+          <p>{cycle?.description}</p>
+        </div>
+        <div className={styles.contact}>
+          <div className={styles.user}>
+            <h3>КОНТАКТ С ПРОДАВАЧА</h3>
+            <div>
+              <img src="" alt="" />
+              <div>
+                <p>sadsafsd</p>
+                <p>fdssfdsfds</p>
+                <p>sdffsdfdsfds</p>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.contactButtons}>
+            <button className={styles.msg}>Съобщение</button>
+            <div className={styles["phone-container"]}>
+              <p className={styles.phone}>xxx-xxx-xxx</p>
+              <button className={styles.view}>Покажи</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles["right-container"]}>
+        <div className={styles["first-container-items"]}>
+          <div className={styles["date"]}>
+            <span>{moment(cycle?.date).format("D MMM, YYYY")}</span>
+            <div className={styles.heart}>
+              {cycle?.likes.find((id) => id == userId) ? (
+                <img
+                  onClick={() => unlike(cycle?._id)}
+                  src={fillHeart}
+                  alt=""
+                />
+              ) : (
+                <img onClick={() => like(cycle?._id)} src={heart} alt="" />
+              )}
+            </div>
+          </div>
+          <h1 className={styles.name}> {cycle?.name} </h1>
+          <p className={styles.price}>{cycle?.price} лв.</p>
+          <div className={styles.btnMsg}>
+            <button>Съобщение</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
