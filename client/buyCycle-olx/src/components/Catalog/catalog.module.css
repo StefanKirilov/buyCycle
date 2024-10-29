@@ -54,7 +54,7 @@
 }
 
 
-.container-items{
+.first-container-items{
     display: flex;
     flex-direction: column;
     gap: 6px;
