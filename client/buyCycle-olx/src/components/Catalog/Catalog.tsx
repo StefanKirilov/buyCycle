@@ -47,22 +47,16 @@ export default function Catalog() {
 
     const like = (id: any) => {
 
-        console.log('1');
-
         apiService.like(id)
             .then(() => setLike(!isLiked))
             .catch();
-
     }
 
     const unlike = (id: any) => {
-
-        console.log('2');
         
         apiService.unlike(id)
             .then(() => setLike(!isLiked))
             .catch();
-
     }
 
     return (
