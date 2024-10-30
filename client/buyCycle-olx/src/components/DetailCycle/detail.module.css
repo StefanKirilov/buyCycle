@@ -1,383 +1,390 @@
-.topWrapper{
-    display: flex;
-    width: 100%;
-    padding: 5% 8%;
-    color: #000000;
-    min-height: 100%;
-    animation: fadeInAnimation ease 2s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    gap: 20px;
+.topWrapper {
+  display: flex;
+  width: 100%;
+  padding: 5% 8%;
+  padding-bottom: 100px;
+  color: #000000;
+  min-height: 100%;
+  animation: fadeInAnimation ease 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  gap: 20px;
 }
 
-.top{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 20px;
+.top {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
 }
 
 /* Carousel.css */
 .carousel {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 30px;
-    background-color: white;
-  }
-  
-  .carousel-inner {
-    width: 100%;
-  }
-  
-  .carousel-image {
-    object-fit: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    aspect-ratio: 1000 / 700;
-    width: 100%;
-    border-radius: 10px;
-  }
-  
-  .carousel-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 24px;
-    color: rgb(0, 0, 0);
-    background: rgb(242, 244, 245);
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 10%;
-    z-index: 2;
-  }
-  
-  .carousel-nav-left {
-    left: 10px;
-  }
-  
-  .carousel-nav-right {
-    right: 10px;
-  }
-
-  .disable {
-    background: rgba(126, 126, 126, 0.4);
-  }
-  
-  .carousel-dots {
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
-    text-align: center;
-  }
-  
-  .dot {
-    height: 8px;
-    width: 8px;
-    margin: 0 4px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .dot.active {
-    background-color: #333;
-  }
-  
-  .carousel-fullscreen {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    font-size: 18px;
-    padding: 8px;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-
-  .under-carousel-container{
-    width: 100%;
-    color: #000000;
-    background-color: white;
-    padding: 10px;
-    border-radius: 10px;
-  }
-
-  .other {
-    display: flex;
-    gap: 30px;
-    margin: 20px 0;
-  }
-
-  .other div{
-border: 1px solid #000000;
-border-radius: 5px;
-padding: 10px;
-  }
-
-  .condition {
-display: flex;
-gap: 10px;
-  }
-
-  .type {
-    display: flex;
-    gap: 10px;
-  }
-
-  .contact {
-    display: flex;
-    width: 100%;
-    color: #000000;
-    background-color: white;
-    padding: 10px;
-    border-radius: 10px;
-  }
-
-  .user{
-
-  }
-
-  .contactButtons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-left: auto;
-    width: 50%;
-    height: 100%;
-  }
-
-  .msg {
-    width: 100%;
- height: 40px;
- cursor: pointer;
- background-color: rgb(0, 47, 52);
- color: white;
- border-radius: 5px;
-  }
-
-  .msg:hover {
-    background-color: rgb(0, 47, 52, 0.4);
-    border: 2px solid rgb(0, 47, 52, 0.4);
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  background-color: white;
 }
 
-  .phone-container {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content:space-between;
-    
-  }
+.carousel-inner {
+  width: 100%;
+}
 
-  .phone {
-    
-  }
+.carousel-image {
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  aspect-ratio: 1000 / 700;
+  width: 100%;
+  border-radius: 10px;
+}
 
-  .view {
-    width: 100px;
-    height: 40px;
-    cursor: pointer;
-    background-color: rgb(255, 255, 255);
-    color:  rgb(0, 47, 52);
-    border-radius: 5px;
-  }
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  color: rgb(0, 0, 0);
+  background: rgb(242, 244, 245);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 10%;
+  z-index: 2;
+}
 
-  .view:hover {
-    border: 4px solid rgb(0, 47, 52);
-  }
+.carousel-nav-left {
+  left: 10px;
+}
 
-  .right-container {
-    width: 40%;
-    margin-left: auto;
-  }
+.carousel-nav-right {
+  right: 10px;
+}
 
-  .first-container-items{
-    width: 100%;
-    color: #000000;
-    background-color: white;
-    padding: 10px;
-    border-radius: 10px;
-    margin-left: auto;
+.disable {
+  background: rgba(126, 126, 126, 0.4);
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.dot {
+  height: 8px;
+  width: 8px;
+  margin: 0 4px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dot.active {
+  background-color: #333;
+}
+
+.carousel-fullscreen {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 18px;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.under-carousel-container {
+  width: 100%;
+  color: #000000;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.other {
+  display: flex;
+  gap: 30px;
+  margin: 20px 0;
+}
+
+.other div {
+  border: 1px solid #000000;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.condition {
+  display: flex;
+  gap: 10px;
+}
+
+.type {
+  display: flex;
+  gap: 10px;
+}
+
+.contact {
+  display: flex;
+  width: 100%;
+  color: #000000;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.user {
+}
+
+.contactButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-left: auto;
+  width: 50%;
+  height: 100%;
+}
+
+.msg {
+  width: 100%;
+  height: 40px;
+  cursor: pointer;
+  background-color: rgb(0, 47, 52);
+  color: white;
+  border-radius: 5px;
+}
+
+.msg:hover {
+  background-color: rgb(0, 47, 52, 0.4);
+  border: 2px solid rgb(0, 47, 52, 0.4);
+}
+
+.phone-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.phone {
+}
+
+.owner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.owner img {
+  height: 60px;
+}
+
+.view {
+  width: 100px;
+  height: 40px;
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 47, 52);
+  border-radius: 5px;
+}
+
+.view:hover {
+  border: 4px solid rgb(0, 47, 52);
+}
+
+.right-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 40%;
+  margin-left: auto;
+}
+
+.first-container-items {
+  width: 100%;
+  color: #000000;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin-left: auto;
 }
 
 .date {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .date span {
-    display: block;
-    /* margin-right: auto; */
+  display: block;
+  /* margin-right: auto; */
 }
 
 .heart {
-    cursor: pointer;
-    margin-left: auto;
+  cursor: pointer;
+  margin-left: auto;
 }
 
-.name{
-    margin-top: 10px;
-    font-size: 20px;
-    font-weight: 200;
+.name {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 200;
 }
 
-.name a{
-    color: #000000;
-    text-decoration: none;
+.name a {
+  color: #000000;
+  text-decoration: none;
 }
 
-
-.price{
-    display: inline-flex;
-    color: #000000;
-    font-size: 20px;
-    margin-top: 10px;
-    font-weight: 700;
+.price {
+  display: inline-flex;
+  color: #000000;
+  font-size: 20px;
+  margin-top: 10px;
+  font-weight: 700;
 }
 
 .btnMsg {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-    width: 100%;
-    height: 40px;
-    overflow: hidden;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  width: 100%;
+  height: 40px;
+  overflow: hidden;
 }
 
-.btnMsg button{
-    width: 100%;
-    cursor: pointer;
-    background-color: rgb(0, 47, 52);
-    color: white;
-    border-radius: 5px;
+.btnMsg button {
+  width: 100%;
+  cursor: pointer;
+  background-color: rgb(0, 47, 52);
+  color: white;
+  border-radius: 5px;
 }
 
 .btnMsg button:hover {
-    width: 100%;
-    cursor: pointer;
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 47, 52);
-    border: 2px solid rgb(0, 47, 52);
+  width: 100%;
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 47, 52);
+  border: 2px solid rgb(0, 47, 52);
 }
 
 /* fdgdg */
 
-.container-items .weight{
-    display: inline-flex;
-    color: #000000;
-    font-size: 20px;
+.container-items .weight {
+  display: inline-flex;
+  color: #000000;
+  font-size: 20px;
 }
 
-.container-items .count{
-    display: inline-flex;
-    color: #000000;
-    font-size: 20px;
+.container-items .count {
+  display: inline-flex;
+  color: #000000;
+  font-size: 20px;
 }
 
-.container-items .description{
-    display: inline-flex;
-    color: #000000;
-    font-size: 20px;
-    /*  */
-    text-align: start;
+.container-items .description {
+  display: inline-flex;
+  color: #000000;
+  font-size: 20px;
+  /*  */
+  text-align: start;
 }
 
 .btn {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .btn .number {
-    width: 40px;
-    height: 40px;
-    font-size: 32px;
-    background-color: #ceab4a;
-    color: black;
-    border: 2px solid #ceab4a;
+  width: 40px;
+  height: 40px;
+  font-size: 32px;
+  background-color: #ceab4a;
+  color: black;
+  border: 2px solid #ceab4a;
 }
 
 .btn button {
-    width: 40px;
-    height: 40px;
-    font-size: 28px;
-    color: #000000;
-    border: 2px solid #ceab4a;
-    background-color: black;
-    cursor: pointer;
+  width: 40px;
+  height: 40px;
+  font-size: 28px;
+  color: #000000;
+  border: 2px solid #ceab4a;
+  background-color: black;
+  cursor: pointer;
 }
 
 .btn .shopCar img {
-    width: 28px;
-    height: 28px;
-    margin-top: 4px;
+  width: 28px;
+  height: 28px;
+  margin-top: 4px;
 }
 
 .btn .shopCar {
-    width: 40px;
-    height: 40px;
-    font-size: 28px;
-    border: 1px solid #ceab4a;
-    margin-left: 10px;
+  width: 40px;
+  height: 40px;
+  font-size: 28px;
+  border: 1px solid #ceab4a;
+  margin-left: 10px;
 }
 
 .like {
-    display: inline-flex;
-    margin-left: 32px;
+  display: inline-flex;
+  margin-left: 32px;
 }
 
 .like .full {
-    width: 40px;
-    height: 40px;
-    background-color: transparent;
-    border: transparent;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: transparent;
 }
 
-.like .empty{
-    width: 40px;
-    height: 40px;
-    background-color: transparent;
-    border: transparent;
+.like .empty {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: transparent;
 }
 
 @keyframes fadeInAnimation {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 781px) {
-    
-    .top{
-        background-image: url("../../assets/contacts_img_1.jpg");
-    }
-    
-    .container-first{
-        margin: 0 auto;
-        width: 70%;
-    }
-    
-    
-    .container-img{
-        height: 160px;
-    }
-    
-    .container-items .name{
-        margin-bottom: 40px;
-    }
+  .top {
+    background-image: url("../../assets/contacts_img_1.jpg");
+  }
 
+  .container-first {
+    margin: 0 auto;
+    width: 70%;
+  }
+
+  .container-img {
+    height: 160px;
+  }
+
+  .container-items .name {
+    margin-bottom: 40px;
+  }
 }
