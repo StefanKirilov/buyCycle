@@ -1,0 +1,80 @@
+.wrapperDialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.100);
+}
+
+.insideWrapperDialog {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgb(196, 194, 194);
+    padding: 50px;
+    border-radius: 6px;
+}
+
+.message {
+    color: #111;
+    text-align: center;
+}
+
+.wrapperButtons {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.yes {
+    width: 60px;
+    background-color: rgba(0, 128, 0, 0.541);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background-color .3s linear;
+}
+
+.no {
+    width: 60px;
+    background-color: rgba(255, 0, 0, 0.541);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background-color .3s linear;
+}
+
+.yes:hover {
+    background-color: green;
+}
+
+.no:hover {
+    background-color: red;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 781px) {
+    
+
+}
