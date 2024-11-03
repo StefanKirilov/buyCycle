@@ -1,115 +1,188 @@
 .header {
-    width: 100%;
-    height: 60px;
-    background-color: rgb(0, 47, 52);
+  width: 100%;
+  height: 60px;
+  background-color: rgb(0, 47, 52);
+  color: rgb(196, 195, 195);
 }
 
 .navigation {
-    background-color: transparent;
-    width: 100%;
-    height: 60px;
-    display: flex;
+  background-color: transparent;
+  width: 100%;
+  height: 60px;
+  display: flex;
 }
 
 .navigation .logoWrapper {
-    display: inline-flex;
-    text-decoration: none;
-    height: 100%;
-    margin-left: 20px;
-    position: relative;
+  display: inline-flex;
+  text-decoration: none;
+  height: 100%;
+  margin-left: 20px;
+  position: relative;
 }
 
 .navigation .logoWrapper .buy {
-    display: inline-flex;
-    margin: 0;
-    height: 100%;
-    font-weight: 500;
-    font-size: 16px;
-    align-items: center;
-    color: #00cb3c;
-    position: absolute;
-    padding-top: 3px;
+  display: inline-flex;
+  margin: 0;
+  height: 100%;
+  font-weight: 500;
+  font-size: 16px;
+  align-items: center;
+  color: #00cb3c;
+  position: absolute;
+  padding-top: 3px;
 }
 
 .navigation .logoWrapper .logo {
-    display: inline-block;
-    width: 100px;
-    height: 100%;
-    margin-left: 4px;
-    filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%);
+  display: inline-block;
+  width: 100px;
+  height: 100%;
+  margin-left: 4px;
+  filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg)
+    brightness(119%) contrast(119%);
 }
 
 .navigation .menu {
-    display: inline-flex;
-    gap: 22px;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    margin-left: auto;
-    margin-right: 20px;
+  display: inline-flex;
+  gap: 22px;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin-left: auto;
+  margin-right: 20px;
 }
 
 .navigation a {
-    position: relative;
-    text-decoration: none;
-    display: inline-flex;
-    color: rgb(196, 195, 195);
-    font-weight: 500;
-    cursor: pointer;
+  position: relative;
+  text-decoration: none;
+  display: inline-flex;
+  color: rgb(196, 195, 195);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* sdfds */
+
+/* .active {
+  font-weight: bold;
+  color: #00cb3c;
+} */
+
+.profileMenu {
+  position: relative;
+  cursor: pointer;
+}
+
+.profileLink {
+  display: flex;
+  align-items: center;
+}
+
+.arrow {
+  margin-left: 5px;
+  transition: transform 0.3s;
+  filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg)
+    brightness(119%) contrast(119%);
+}
+
+.profileMenu.active .arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #ffffff;
+  border: 1px solid #4444443f;
+  border-radius: 4px;
+  width: 150px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.navigation .dropdownItem {
+  padding: 10px;
+  color: #131313;
+  text-decoration: none;
+}
+
+.navigation .dropdownItem:hover {
+  background-color: rgb(0, 47, 52);
+  color: white;
+}
+
+.navigation .profileMenu:hover {
+  color: rgb(129, 129, 129);
 }
 
 .navigation a:hover {
-    color: rgb(129, 129, 129);
+  color: rgb(129, 129, 129);
 }
 
 .navigation a.link::after {
-    content: '';
-    width: 0%;
-    height: 2px;
-    background-color: #02a333;
-    position: absolute;
-    top: 100%;
+  content: "";
+  width: 0%;
+  height: 2px;
+  background-color: #02a333;
+  position: absolute;
+  top: 100%;
 }
 
 .navigation a.link:hover::after {
-    caret-color: transparent;
-    animation: animate 1s forwards;
+  caret-color: transparent;
+  animation: animate 1s forwards;
 }
 
 .navigation a.active {
-    border-bottom: solid 2px #02a333;
+  border-bottom: solid 2px #02a333;
 }
 
-.navigation a img {
-    filter:brightness(80%) contrast(100%);
+.navigation a img,
+.navigation .profileMenu img {
+  filter: brightness(80%) contrast(100%);
 }
 
-.navigation a:hover img {
-    filter:brightness(50%) contrast(100%);
+.navigation a:hover img,
+.navigation .profileMenu:hover img {
+  filter: brightness(50%) contrast(100%);
 }
 
 .navigation a p {
-    display: inline-block;
-    padding: 0 4px;
-    margin: 0;
+  display: inline-block;
+  padding: 0 4px;
+  margin: 0;
+}
+
+.user {
+  display: flex;
+  padding: 8px;
+  justify-content: space-around;
+  color: black;
+}
+
+.userImage {
+  width: 20px;
+  height: 20px;
 }
 
 @keyframes animate {
-    0% {
-        width: 0%;
-    }
+  0% {
+    width: 0%;
+  }
 
-    100% {
-        width: 100%;
-    }
+  100% {
+    width: 100%;
+  }
 }
 
 @keyframes animate-hight {
-    0% {
-        opacity: 0;
-     }
- 
-     100% {
-         opacity: 1;
-     }
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
