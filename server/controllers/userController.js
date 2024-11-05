@@ -56,6 +56,16 @@ router.delete('/:fileName',async (req, res) => {
     res.status(204).json({ok: true});
 });
 
+router.post('/owner', async (req, res, next) => {
+    const userId = req.body;   
+
+    const result = await userService.getProfile(userId.id)
+    .then(user => { res.status(200).json(user) })
+    .catch(next); 
+
+    return result;
+});
+
 router.get('/profile', async (req, res, next) => {
     const user = JSON.parse(req.cookies["auth"]);
     const userId = user?._id;
@@ -63,8 +73,6 @@ router.get('/profile', async (req, res, next) => {
     const result = await userService.getProfile(userId)
     .then(user => { res.status(200).json(user) })
     .catch(next); 
-
-    // console.log(result);
 
     return result;
 });
