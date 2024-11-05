@@ -64,7 +64,7 @@ exports.deleteImage = async (data, userId) => {
 // 
 
 exports.getProfile = (id) => {
-    const user = User.findById(id, { password: 0, __v: 0 }) //finding by Id and returning without password and __v
+    const user = User.findById(id, { password: 0, __v: 0 }) //finding by Id and returning without password and __v   
     return user;
 };
 
