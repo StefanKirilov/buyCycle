@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+  <title>DIKS94</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="responsive.css" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+  <script defer src="script.js"></script>
+</head>
+
+<body>
+  <header class="header">
+    <nav class="navbar">
+      <ul class="list">
+        <li><img src="./assets/logo_2.svg" alt=""></li>
+        <li><a href="#">За нас</a></li>
+        <li><a href="#">Промоции</a></li>
+        <li><a href="#">Нови продукти</a></li>
+        <li><a href="#">Контакти</a></li>
+      </ul>
+    </nav>
+    <div class="dropdown-menu">
+      <ul class="list-dropdown">
+        <li><a href="#">За нас</a></li>
+        <li><a href="#">Промоции</a></li>
+        <li><a href="#">Нови продукти</a></li>
+        <li><a href="#">Контакти</a></li>
+      </ul>
+    </div>
+    <div class="right-section-header">
+      <div class="toggle-btn">
+        <i class="fa-solid fa-bars" style="color: #ffffff;"></i>
+      </div>
+      <div class="search">
+        <input class="searchInput" type="text" name="search">
+        <label for="search">Търсене</label>
+        <img class="search-img" onclick="search()" src="./assets/search.svg" alt="">
+      </div>
+      <div class="profile">
+        <img src="./assets/profile.svg" alt="">
+      </div>
+      <div class="shop">
+        <img src="./assets/ion_cart-outline.svg" alt="">
+        <p>Количка (3)</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="all-sections sections">
+      <ul>
+        <li><a href="#">Електро апаратура</a></li>
+        <li><a href="#">Ключове и контакти</a></li>
+        <li><a href="#">Осветление</a></li>
+        <li><a href="#">Електро материали</a></li>
+        <li><a href="#">Водопровод и канализация</a></li>
+        <li><a href="#">Крепежни елементи</a></li>
+        <li><a href="#">Системи за отопление</a></li>
+        <li><a href="#">Санитарно обавеждане</a></li>
+      </ul>
+    </section>
+    <section class="all-sections path">
+      <p>Начало&nbsp;/&nbsp;Продукти&nbsp;/&nbsp;Ключове и контакти&nbsp;/&nbsp;Серия Asfora&nbsp;/
+      <p class="last">&nbsp;Ключ сериен схема 5 Asfora бял</p>
+      </p>
+    </section>
+    <section class="all-sections focus-item">
+      <div class="item-carousel">
+        <div class="carousel-item carousel-item-selected"><img src="./assets/switch_0.png" alt=""></div>
+        <div class="carousel-item"><img src="./assets/switch_1.png" alt=""></div>
+        <div class="carousel-item"><img src="./assets/switch_2.png" alt=""></div>
+        <div class="carousel-item"><img src="./assets/switch_3.png" alt=""></div>
+        <div class="carousel-nav">
+          <span class="carousel-btn carousel-btn-selected"></span>
+          <span class="carousel-btn"></span>
+          <span class="carousel-btn"></span>
+          <span class="carousel-btn"></span>
+        </div>
+        <div class="prev" onclick="goPrev()">
+          <img src="./assets/prev.svg" alt="">
+        </div>
+        <div class="next" onclick="goNext()">
+          <img src="./assets/next.svg" alt="">
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-item-inner">
+          <p class="category">КЛЮЧОВЕ И КОНТАКТИ</p>
+          <h1 class="name">Ключ сериен схема 5 Asfora бял</h1>
+          <div class="number">
+            <p>Арт. №: 142002</p>
+            <p>Наличност: 123,456</p>
+          </div>
+          <div class="manufacturer-container">
+            <div class="manufacturer">
+              <h4>Производител:</h4>
+              <img src="./assets/shneider.png" alt="">
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur. Eget feugiat purus semper in at hac nullam fermentum pharetra.
+              Scelerisque pellentesque porttitor vel diam feugiat diam scelerisque turpis. Dolor tortor et adipiscing
+              bibendum. Sit purus nulla convallis vulputate ipsum tortor.</p>
+          </div>
+        </div>
+        <div class="delivery">
+          <img src="./assets/tabler_truck-delivery.svg" alt="">
+          <p class="delivery-text">
+            <span class="bold">Безплатна доставка</span> до пощенски код: ПК1234
+          </p>
+        </div>
+        <a class="code" href="#">Промени пощенски код</a>
+        <div class="buy">
+          <div class="price">
+            <p>Цена на бр.</p>
+            <h2><span class="currentPrice">7.21</span>лв.</h2>
+          </div>
+          <div class="count">
+            <div>
+              <p>Количество</p>
+              <div class="form-count">
+                <button onclick="decrementCount()" class="decrement">
+                  <p>-</p>
+                </button>
+                <p class="currentCount">1</p>
+                <button onclick="incrementCount()" class="increment">
+                  <p>+</p>
+                </button>
+              </div>
+            </div>
+            <div class="buy-button">
+              <img src="./assets/ion_cart-outline.svg" alt="">
+              <p>КУПИ</p>
+            </div>
+            <div class="favorite">
+              <img class="filter-heart" src="./assets/heart.svg" alt="">
+              <p>ДОБАВИ В ЛЮБИМИ</p>
+            </div>
+          </div>
+        </div>
+        <h5 class="fast-delivery">Бърза поръчка</h5>
+        <form class="form-delivery" action="#">
+          <input class="nameInput" value="" type="text" placeholder="Вашето име">
+          <input class="phoneInput" type="text" placeholder="Телефон за контакт">
+          <div class="order" onclick="SendMail()">
+            <img src="./assets/ion_cart-outline.svg" alt="">
+            <h3 class="orderBtn">ПОРЪЧАЙ</h3>
+          </div>
+        </form>
+      </div>
+    </section>
+    <section class="all-sections carousel">
+      <div class="first-carousel-header">
+        <h2>СЕРИЯ <span>ASFORA</span></h2>
+        <div class="buttons">
+          <button onclick="firstCarouselPrev()" class="prev"><img src="./assets/arrow-left-solid.svg" alt=""></button>
+          <button onclick="firstCarouselNext()" class="next"><img src="./assets/arrow-right-solid.svg" alt=""></button>
+        </div>
+      </div>
+      <div class="all-items first-carousel">
+        <div class="item-card">
+          <img class="item-img" src="./assets/switch_1.png" alt="">
+          <h3 class="name">Ключ девиатор схема 6 Asfora бял </h2>
+            <p>Арт. №: 830309</p>
+            <h2 class="price">6.97лв.</h1>
+              <a href="#" class="more">Виж повече ></a>
+        </div>
+        <div class="item-card">
+          <img  class="item-img" src="./assets/switch_2.png" alt="">
+          <h3 class="name">Ключ единичен схема 1 с глим ламп... </h2>
+            <p>Арт. №: 830309</p>
+            <h2 class="price">9.22лв.</h1>
+              <a href="#" class="more">Виж повече ></a>
+        </div>
+        <div class="item-card">
+          <img class="item-img" src="./assets/switch_3.png" alt="">
+          <h3 class="name">Контакт Шуко 16А Asfora бял </h2>
+            <p>Арт. №: 830309</p>
+            <h2 class="price">8.12лв.</h1>
+              <a href="#" class="more">Виж повече ></a>
+        </div>
+        <div class="item-card">
+          <img class="item-img" src="./assets/switch_4.png" alt="">
+          <h3 class="name">Контакт Шуко с капак Asfora бял </h2>
+            <p>Арт. №: 830309</p>
+            <h2 class="price">8.12лв.</h1>
+              <a href="#" class="more">Виж повече ></a>
+        </div>
+        <div class="item-card">
+          <img class="item-img" src="./assets/switch_5.png" alt="">
+          <h3 class="name">Компютърна RJ45 Cat5e и телефонна... </h2>
+            <p>Арт. №: 830309</p>
+            <h2 class="price">19.17лв.</h1>
+              <a href="#" class="more">Виж повече ></a>
+        </div>
+        <div class="item-card">
+          <img class="item-img" src="./assets/switch_6.png" alt="">
+          <h3 class="name">Ротативен димер девиатор Asfora бял</h2>
+            <p>Арт. №: 830309</p>
+            <h2 class="price">68.53лв.</h1>
+              <a href="#" class="more">Виж повече ></a>
+        </div>
+        <div class="item-card">
+          <img class="item-img" src="./assets/switch_1.png" alt="">
+          <h3 class="name">Ключ девиатор схема 6 Asfora бял </h2>
+            <p>Арт. №: 830309</p>
+            <h2 class="price">6.97лв.</h1>
+              <a href="#" class="more">Виж повече ></a>
+        </div>
+        <div class="item-card">
+          <img class="item-img" src="./assets/switch_2.png" alt="">
+          <h3 class="name">Ключ девиатор схема 6 Asfora бял </h2>
+            <p>Арт. №: 830309</p>
+            <h2 class="price">6.97лв.</h1>
+              <a href="#" class="more">Виж повече ></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="all-sections section-characteristics">
+      <h2>ХАРАКТЕРИСТИКИ</h2>
+      <div class="characteristic-item">
+        <p class="characteristic">МАРКА</p>
+        <p class="name">SCHNEIDER</p>
+      </div>
+      <div class="characteristic-item">
+        <p class="characteristic">МОДЕЛ</p>
+        <p class="name">Asfora</p>
+      </div>
+      <div class="characteristic-item">
+        <p class="characteristic">ВИД</p>
+        <p class="name"> СЕРИЕН КЛЮЧ СХ.5</p>
+      </div>
+      <div class="characteristic-item">
+        <p class="characteristic">ТИП</p>
+        <p class="name">СКРИТ МОНТАЖ</p>
+      </div>
+      <div class="characteristic-item">
+        <p class="characteristic">НОМИНАЛЕН ТОК</p>
+        <p class="name"> 10.00 A</p>
+      </div>
+      <div class="characteristic-item">
+        <p class="characteristic">НОМИНАЛНО НАПРЕЖЕНИЕ</p>
+        <p class="name">250.00 V</p>
+      </div>
+      <div class="characteristic-item">
+        <p class="characteristic">СТЕПЕН НА ВЛАГОЗАЩИТА IP</p>
+        <p class="name">20 IP</p>
+      </div>
+      <div class="characteristic-item">
+        <p class="characteristic">МАТЕРИАЛ НА ОСНОВАТА</p>
+        <p class="name">ПЛАСТМАСА</p>
+      </div>
+      <div class="characteristic-item">
+        <p class="characteristic">ВИД СВЪРЗВАНЕ</p>
+        <p class="name">БЪРЗА ВРЪЗКА</p>
+      </div>
+      <div class="characteristic-item">
+        <p class="characteristic">СЕРИЯ</p>
+        <p class="name">ASFORA</p>
+      </div>
+      <div class="characteristic-item">
+        <p class="characteristic">ЦВЯТ</p>
+        <p class="name">БЯЛ</p>
+      </div>
+      <div class="characteristic-item">
+        <p class="characteristic">РАЗМЕР</p>
+        <p class="name">42х83х83 мм</p>
+      </div>
+      <div class="characteristic-item">
+        <p class="characteristic">ТЕГЛО</p>
+        <p class="name"> 0.100 kg</p>
+      </div>
+      <div class="characteristic-item">
+        <p class="characteristic">EAN</p>
+        <p class="name">3606480525018</p>
+      </div>
+    </section>
+
+    <section class="all-sections carousel">
+      <div class="second-carousel-header">
+        <h2>ПОДОБНИ <span>ПРОДУКТИ</span></h2>
+        <div class="buttons">
+          <button onclick="secondCarouselPrev()" class="prev"><img src="./assets/arrow-left-solid.svg" alt=""></button>
+          <button onclick="secondCarouselNext()" class="next"><img src="./assets/arrow-right-solid.svg" alt=""></button>
+        </div>
+      </div>
+      <div class="all-items second-carousel">
+        <div class="item-card">
+          <img class="item-img" src="./assets/item_1.png" alt="">
+          <h3 class="name">Автоматичен прекъсвач iC60N, 3P, 40A, крива B...</h2>
+            <p>Арт. №: 830309</p>
+            <h2 class="price">102.80лв.</h1>
+              <div class="card-btns">
+                <div class="card-buy-btn">
+                  <img src="./assets/ion_cart-outline.svg" alt="">
+                  <p>КУПИ</p>
+                </div>
+                <div class="card-favorite-btn">
+                  <img class="card-filter-heart" src="./assets/heart.svg" alt="">
+                </div>
+              </div>
+        </div>
+        <div class="item-card">
+          <img class="item-img" src="./assets/item_2.png" alt="">
+          <h3 class="name">Миниатюрен автоматичен прекъсва...</h2>
+            <p>Арт. №: 830309</p>
+            <h2 class="price">100.69лв.</h1>
+              <div class="card-btns">
+                <div class="card-buy-btn">
+                  <img src="./assets/ion_cart-outline.svg" alt="">
+                  <p>КУПИ</p>
+                </div>
+                <div class="card-favorite-btn">
+                  <img class="card-filter-heart" src="./assets/heart.svg" alt="">
+                </div>
+              </div>
+        </div>
+        <div class="item-card">
+          <img class="item-img" src="./assets/item_3.png" alt="">
+          <h3 class="name">Автоматичен прекъсвач C60PV-DC, 2P, 20 A, кр...</h2>
+            <p>Арт. №: 830309</p>
+            <h2 class="price">131.14лв.</h1>
+              <div class="card-btns">
+                <div class="card-buy-btn">
+                  <img src="./assets/ion_cart-outline.svg" alt="">
+                  <p>КУПИ</p>
+                </div>
+                <div class="card-favorite-btn">
+                  <img class="card-filter-heart" src="./assets/heart.svg" alt="">
+                </div>
+              </div>
+        </div>
+        <div class="item-card">
+          <img class="item-img" src="./assets/item_4.png" alt="">
+          <h3 class="name">Ревизионна врата 30/40 28*38 бяла </h2>
+            <p>Арт. №: 830309</p>
+            <h2 class="price">14.52лв.</h1>
+              <div class="card-btns">
+                <div class="card-buy-btn">
+                  <img src="./assets/ion_cart-outline.svg" alt="">
+                  <p>КУПИ</p>
+                </div>
+                <div class="card-favorite-btn">
+                  <img class="card-filter-heart" src="./assets/heart.svg" alt="">
+                </div>
+              </div>
+        </div>
+        <div class="item-card">
+          <img class="item-img" src="./assets/item_5.png" alt="">
+          <h3 class="name">Автоматичен прекъсвач C60PV-DC, 2P, 20 A, кр...</h2>
+            <p>Арт. №: 830309</p>
+            <h2 class="price">131.14лв.</h1>
+              <div class="card-btns">
+                <button class="card-buy-btn">
+                  <img src="./assets/ion_cart-outline.svg" alt="">
+                  <p>КУПИ</p>
+                </button>
+                <div class="card-favorite-btn">
+                  <img class="card-filter-heart" src="./assets/heart.svg" alt="">
+                </div>
+              </div>
+        </div>
+        <div class="item-card">
+          <img class="item-img" src="./assets/item_6.png" alt="">
+          <h3 class="name">Ревизионна врата 30/40 28*38 бяла </h2>
+            <p>Арт. №: 830309</p>
+            <h2 class="price">14.52лв.</h1>
+              <div class="card-btns">
+                <div class="card-buy-btn">
+                  <img src="./assets/ion_cart-outline.svg" alt="">
+                  <p>КУПИ</p>
+                </div>
+                <div class="card-favorite-btn">
+                  <img class="card-filter-heart" src="./assets/heart.svg" alt="">
+                </div>
+              </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <section class="contacts">
+        <img class="logo" src="./assets/logo_2.svg" alt="">
+        <div class="responsive-menu">
+          <ul id="accordion">
+            <li>
+              <input type="checkbox" name="accordion" id="first">
+              <label for="first">Полезни връзки <img src="./assets/Vector.svg" alt=""></label>
+              <div class="content">
+                <ul>
+                  <li> <a href="#">Общи условия</a></li>
+                  <li> <a href="#">Рекламация и връщане</a></li>
+                  <li> <a href="#">Политика за поверителност</a></li>
+                  <li> <a href="#">Контакти</a></li>
+                  <li> <a href="#">За нас</a></li>
+                  <li> <a href="#">Магазини</a></li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <input type="checkbox" name="accordion" id="second">
+              <label for="second">Полезни връзки <img src="./assets/Vector.svg" alt=""></label>
+              <div class="content">
+                <ul>
+                  <li> <a href="#">Общи условия</a></li>
+                  <li> <a href="#">Рекламация и връщане</a></li>
+                  <li> <a href="#">Политика за поверителност</a></li>
+                  <li> <a href="#">Контакти</a></li>
+                  <li> <a href="#">За нас</a></li>
+                  <li> <a href="#">Магазини</a></li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <input type="checkbox" name="accordion" id="third">
+              <label for="third">Информация <img src="./assets/Vector.svg" alt=""></label>
+              <div class="content">
+                <ul>
+                  <li> <a href="#">Общи условия</a></li>
+                  <li> <a href="#">Рекламация и връщане</a></li>
+                  <li> <a href="#">Политика за поверителност</a></li>
+                  <li> <a href="#">Контакти</a></li>
+                  <li> <a href="#">За нас</a></li>
+                  <li> <a href="#">Магазини</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="place">
+          <img src="./assets/spot.svg" alt="">
+          <p>гр.Бургас, Северна промишлена зона, ул."Янко Комитов" 16</p>
+        </div>
+        <div class="post">
+          <img src="./assets/post.svg" alt="">
+          <p>diks94_bs@abv.bg</p>
+        </div>
+        <div class="phone">
+          <img src="./assets/phone.svg" alt="">
+          <p>056&nbsp;88&nbsp;41;&nbsp;0895&nbsp;449&nbsp;302</p>
+        </div>
+      </section>
+      <section class="useful">
+        <h2>Полезни връзки</h2>
+        <ul>
+          <li> <a href="#">Общи условия</a></li>
+          <li> <a href="#">Рекламация и връщане</a></li>
+          <li> <a href="#">Политика за поверителност</a></li>
+          <li> <a href="#">Контакти</a></li>
+          <li> <a href="#">За нас</a></li>
+          <li> <a href="#">Магазини</a></li>
+        </ul>
+      </section>
+      <section class="useful">
+        <h2>Полезни връзки</h2>
+        <ul>
+          <li> <a href="#">Общи условия</a></li>
+          <li> <a href="#">Рекламация и връщане</a></li>
+          <li> <a href="#">Политика за поверителност</a></li>
+          <li> <a href="#">Контакти</a></li>
+          <li> <a href="#">За нас</a></li>
+          <li> <a href="#">Магазини</a></li>
+        </ul>
+      </section>
+      <section class="useful">
+        <h2>Полезни връзки</h2>
+        <ul>
+          <li> <a href="#">Общи условия</a></li>
+          <li> <a href="#">Рекламация и връщане</a></li>
+          <li> <a href="#">Политика за поверителност</a></li>
+          <li> <a href="#">Контакти</a></li>
+          <li> <a href="#">За нас</a></li>
+          <li> <a href="#">Магазини</a></li>
+        </ul>
+      </section>
+      <section class="useful">
+        <h2>Полезни връзки</h2>
+        <ul>
+          <li> <a href="#">Общи условия</a></li>
+          <li> <a href="#">Рекламация и връщане</a></li>
+          <li> <a href="#">Политика за поверителност</a></li>
+          <li> <a href="#">Контакти</a></li>
+          <li> <a href="#">За нас</a></li>
+          <li> <a href="#">Магазини</a></li>
+        </ul>
+      </section>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer--paragraph">Diks94.com &copy; 2024</p>
+      <img src="./assets/webstar.svg" alt="">
+    </div>
+  </footer>
+  <div class="phone-contact">
+    <img src="./assets/phone-contact.svg" alt="">
+    <div class="phone-numbers">
+      <p>056 88 02 41;</p>
+      <p>0895 449 302</p>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</body>
+
+</html>
